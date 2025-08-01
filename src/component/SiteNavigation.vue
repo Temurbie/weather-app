@@ -6,14 +6,27 @@
                 <p class="text-2xl">The Local Weather</p>
             </RouterLink>
             <div class="flex gap-3 flex-1 justify-end ">
-                <i class="fa-solid fa-circle-info text-xl
+                <i @click="toggleModal" class="fa-solid fa-circle-info text-xl
+                hover:text-weather-secondary duration-150 cursor-pointer"></i>
+                <i class="fa-solid fa-plus text-xl
                 hover:text-weather-secondary duration-150 cursor-pointer"></i>
             </div>
+            <BaseModel :modalLogic="modalLogic" @close-modal="toggleModal">
+                <h1 class="text-red-700">salom men modulman</h1>
+            </BaseModel>
         </nav>
    </header>
 </template>
 
 <script setup>
 import { RouterLink } from 'vue-router';
+import BaseModel from './BaseModel.vue';
+import {ref } from 'vue'
+const modalLogic = ref(null);
+const toggleModal = () =>{
+    
+    modalLogic.value = !modalLogic.value
+    console.log("bosildi", modalLogic);
+}
 </script>
 

@@ -1,6 +1,6 @@
 import App from '@/App.vue'
-import Homeview from '@/assests/view/Homeview.vue'
 import SiteNavigation from '@/component/SiteNavigation.vue'
+import Homeview from '@/view/Homeview.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({

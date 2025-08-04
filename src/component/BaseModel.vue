@@ -1,14 +1,25 @@
 <template>
     <Transition name="modal-outer">
-        <wrapper v-show="modalLogic"  class="absolute w-full bg-black bg-opacity-30 h-screen top-0 left-0 flex justify-center px-8">
-            <Transition name="modal-inner">
-                <div v-if="modalLogic"  class="p-4 bg-white self-start mt-32 max-w-md" >
-                <slot />
-                <button v-on:click="$emit('close-modal')" class="mt-8 bg-weather-primary text-white py-2 px-6">Close</button>
-            </div>
-            </Transition>
-        </wrapper>
-    </Transition>
+    <div 
+      v-show="modalLogic"
+      class="fixed inset-0 bg-black bg-opacity-30 flex justify-center px-8 z-[99999]"
+      @click.self="$emit('close-modal')"
+    >
+      <Transition name="modal-inner">
+        <div 
+          v-if="modalLogic"  
+          class="p-4 bg-white self-start mt-32 max-w-md rounded"
+        >
+          <slot />
+          <button 
+            @click="$emit('close-modal')" 
+            class="mt-8 bg-weather-primary text-white py-2 px-6 rounded">
+            Close
+          </button>
+        </div>
+      </Transition>
+    </div>
+  </Transition>
 </template>
 
 <script setup>

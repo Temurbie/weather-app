@@ -11,7 +11,7 @@
                 <i class="fa-solid fa-plus text-xl
                 hover:text-weather-secondary duration-150 cursor-pointer"></i>
             </div>
-            <BaseModel :modalLogic="modalLogic" @close-modal="toggleModal">
+            <BaseModel class="z-50" :modalLogic="modalLogic" @close-modal="toggleModal">
                 <h1 class="text-red-700">salom men modulman</h1>
             </BaseModel>
         </nav>

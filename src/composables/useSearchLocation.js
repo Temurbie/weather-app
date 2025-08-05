@@ -1,7 +1,10 @@
 import { ref } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
+
 
 export function useSearchLocation() {
+   const router = useRouter()
   const mapboxAPIKey =
     "pk.eyJ1IjoidGVtdXJiaWUiLCJhIjoiY21kdm5kMnFiMHV6aTJtcXdldXQyMjZqZyJ9.UOnPbHgIHIwRStwVhma4yw";
   const searchQuery = ref("");
@@ -20,15 +23,37 @@ export function useSearchLocation() {
           
         );
         mapBoxSearchResult.value = result.data.features;
+        
         }catch{
             haveError.value = true
         }
       }, 300);
-      console.log("ishladi", haveError.value);
+      console.log("ishladi", mapBoxSearchResult.value);
+    }else if(searchQuery.value == ""){
+      mapBoxSearchResult.value = []
+    }else{
 
-      return;
+      queryTimeout.value = null;
     }
-    queryTimeout.value = null;
   }
-  return { getSearchResult, searchQuery, mapBoxSearchResult, haveError};
+
+
+
+  function previewCity(result){
+   
+   const [ state, city ]= result.place_name.split(",")
+    router.push({
+      name: "cityView",
+      params: { state : state.replaceAll("",""), city : city},
+      query:{
+        lat : result.geometry.coordinates[1],
+        lng : result.geometry.coordinates[0],
+        preview: true
+      }
+    })
+   console.log(router);
+   
+    
+  }
+  return { getSearchResult, searchQuery, mapBoxSearchResult, haveError, previewCity};
 }

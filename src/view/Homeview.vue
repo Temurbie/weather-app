@@ -21,6 +21,7 @@
             v-for="searchResult in mapBoxSearchResult"
             :key="searchResult.id"
             class="py-2 cursor-pointer"
+            @click="previewCity(searchResult)"
           >
             {{ searchResult.place_name }}
           </li>
@@ -31,7 +32,9 @@
 </template>
 
 <script setup>
+import { useRoute } from "vue-router";
 import { useSearchLocation } from "@/composables/useSearchLocation";
-const { getSearchResult, searchQuery, mapBoxSearchResult, haveError } =
+const { getSearchResult, searchQuery, mapBoxSearchResult, haveError, previewCity } =
   useSearchLocation();
+
 </script>

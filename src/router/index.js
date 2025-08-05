@@ -1,5 +1,5 @@
-import App from '@/App.vue'
-import SiteNavigation from '@/component/SiteNavigation.vue'
+
+import CityView from '@/view/CityView.vue'
 import Homeview from '@/view/Homeview.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -10,6 +10,11 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: Homeview
+    },
+    {
+      path: "/weather/:state/:city",
+      name: "cityView",
+      component: CityView
     }
   ],
 })

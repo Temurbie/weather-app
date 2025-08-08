@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { useRoute } from "vue-router";
+
 import { useSearchLocation } from "@/composables/useSearchLocation";
 const { getSearchResult, searchQuery, mapBoxSearchResult, haveError, previewCity } =
   useSearchLocation();

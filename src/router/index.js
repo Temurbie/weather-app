@@ -1,4 +1,5 @@
 
+import AsynCityView from '@/component/AsynCityView.vue'
 import CityView from '@/view/CityView.vue'
 import Homeview from '@/view/Homeview.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -15,6 +16,11 @@ const router = createRouter({
       path: "/weather/:state/:city",
       name: "cityView",
       component: CityView
+    },
+    {
+      path: "/async",
+      name: "async",
+      component: AsynCityView
     }
   ],
 })

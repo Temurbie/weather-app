@@ -8,7 +8,7 @@ export function useCityImg() {
 
   const accsesKey = `G-fR1roBLhufV0A7LoMaYkz2hg9g7Y2rlDYGCFwMkIA`;
   async function getData() {
-    console.log(cityName);
+    // console.log(cityName);
 
     try {
       const response = await axios.get(
@@ -26,7 +26,7 @@ export function useCityImg() {
       );
 
       imageUrl.value = response.data.results[0].urls.full;
-      console.log(imageUrl.value);
+      // console.log(imageUrl.value);
     } catch (err) {
       console.log(err);
     }

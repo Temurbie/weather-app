@@ -12,8 +12,7 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent } from 'vue'
-
+import { defineAsyncComponent, ref } from 'vue'
 const AsynCityView = defineAsyncComponent(() =>
   import('@/component/AsynCityView.vue')
 )

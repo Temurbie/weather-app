@@ -1,0 +1,10 @@
+{
+  "weather": {
+    "clear_sky": "Ochiq osmon (bulutsiz)",
+    "partly_cloudy": "Qisman bulutli",
+    "mostly_sunny": "Aksar bulutsiz, biroz bulutli bo‘lishi mumkin",
+    "mostly_cloudy": "Aksar osmon bulut bilan qoplangan",
+    "cloudy": "Qattiq bulutli",
+    "overcast": "Toʻliq bulutli, qorong‘u osmon"
+  }
+}

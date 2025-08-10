@@ -7,7 +7,7 @@
         v-model="searchQuery"
         class="bg-transparent py-2 px-1 w-full border-b focus:border-weather-secondary focus:outline-none focus:shadow-[0px_1px_0_0#004E71]"
         placeholder="Mintaqa yoki shaxar izlang"
-      />
+/>
       <ul
         class="w-full absolute bg-weather-secondary text-white shadow-md py-2 px-1 top[-66px]"
       >

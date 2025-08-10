@@ -20,7 +20,13 @@ export default {
     screens: {
       sm: "640px",
       md: "768px"
-    }
+    },
+    // width:{
+    //   "myW": `200px`,
+    // },
+    // height:{
+    //   "myH": `200px`
+    // }
   },
   plugins: [],
 }

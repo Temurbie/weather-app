@@ -1,9 +1,11 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import { useRouteInfo } from "@/stories/useRoutInfo";
 
 
 export function useSearchLocation() {
+  const routeInfoPinia = useRouteInfo()
    const router = useRouter()
   const mapboxAPIKey =
     "pk.eyJ1IjoidGVtdXJiaWUiLCJhIjoiY21kdm5kMnFiMHV6aTJtcXdldXQyMjZqZyJ9.UOnPbHgIHIwRStwVhma4yw";
@@ -11,7 +13,6 @@ export function useSearchLocation() {
   const queryTimeout = ref(null);
   const mapBoxSearchResult = ref([]);
   const haveError = ref(false)
-
   function getSearchResult() {
     clearTimeout(queryTimeout.value);
 
@@ -22,7 +23,9 @@ export function useSearchLocation() {
           `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxAPIKey}&types=place`
           
         );
+        console.log("mapbox",mapBoxSearchResult);
         mapBoxSearchResult.value = result.data.features;
+        
         
         }catch{
             haveError.value = true
@@ -42,6 +45,11 @@ export function useSearchLocation() {
   function previewCity(result){
    
    const [ state, city ]= result.place_name.split(",")
+   routeInfoPinia.setrouteInfo(result)
+   console.log("router infoga malumot berildi", routeInfoPinia.routeInfo);
+   console.log(routeInfoPinia.routeInfo);
+   
+   
     router.push({
       name: "cityView",
       params: { state : state.replaceAll("",""), city : city},
@@ -55,5 +63,7 @@ export function useSearchLocation() {
    
     
   }
-  return { getSearchResult, searchQuery, mapBoxSearchResult, haveError, previewCity};
+
+
+  return { getSearchResult, searchQuery, mapBoxSearchResult, haveError, previewCity };
 }

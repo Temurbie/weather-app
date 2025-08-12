@@ -19,10 +19,12 @@
           <p>{{ $t(`weather.${mappedKey}`) }}</p>
         </div>
 
-        <p>
-          Mahalliy vaqt: {{ new Date(weather?.currentTime).toLocaleString() }}
+        <div class="flex justify-center">
+          <p>
+          {{ timeDate }}
         </p>
         <p>shamol {{ weather?.wind?.deg }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -34,14 +36,17 @@ import { useAsyncWeather } from "@/composables/asyncWeather";
 import { useCityImg } from "@/composables/getCityImg";
 import { useI18n } from "vue-i18n";
 import clearSkyIcon from "../assests/icons8-clear-sky-64.png";
+import { useRouteInfo } from "@/stories/useRoutInfo";
 
-const { getWeather, route, mappedKey } = useAsyncWeather();
+const { getWeather, route, mappedKey, date } = useAsyncWeather();
 const { imageUrl, getData } = useCityImg();
 const weather = ref(null);
 const { t } = useI18n();
-const weatherIcon = computed(() => {
-  console.log(mappedKey.value);
+const timeDate = date
 
+
+
+const weatherIcon = computed(() => {
   switch (mappedKey.value) {
     case "clear_sky":
       return clearSkyIcon;
@@ -50,5 +55,8 @@ const weatherIcon = computed(() => {
 onMounted(async () => {
   weather.value = await getWeather();
   await getData();
+  console.log(date.value);
+  
+  
 });
 </script>

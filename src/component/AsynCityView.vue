@@ -36,7 +36,7 @@ import { useAsyncWeather } from "@/composables/asyncWeather";
 import { useCityImg } from "@/composables/getCityImg";
 import { useI18n } from "vue-i18n";
 import clearSkyIcon from "../assests/icons8-clear-sky-64.png";
-import { useRouteInfo } from "@/stories/useRoutInfo";
+
 
 const { getWeather, route, mappedKey, date } = useAsyncWeather();
 const { imageUrl, getData } = useCityImg();

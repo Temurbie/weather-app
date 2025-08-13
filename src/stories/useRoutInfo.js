@@ -13,7 +13,7 @@ export const useRouteInfo = defineStore('info',()=>{
     function setshareRouteInfo(data){
         console.log("bosildi va data keldi ", data);
         
-        shareRouteInfo.value = data
+        shareRouteInfo.value.push(data)
         console.log("sharedga data berildi", shareRouteInfo.value);
         
     }

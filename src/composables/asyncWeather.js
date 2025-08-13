@@ -17,19 +17,14 @@ export function useAsyncWeather() {
       );
       apiDescription.value = dataWeather.data.weather[0].description.toLowerCase();
       date.value = new Date(Date.now()  + dataWeather.data.timezone * 1000);
+      console.log(dataWeather,"getweatherdan");
+      
       return dataWeather.data
     } catch (err) {
       console.log(err);
     }
   }
-// function getTime() {
-//   let d = new Date();
-//   let day = d.getDate()
-//   let month = d.getMonth()
-//   let year = d.get()
-//   let month = d.getMonth()
-//   console.log(day);
-  
+
   
 // }
   // getTime()

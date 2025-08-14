@@ -34,13 +34,7 @@ const toggleModal = () =>{
     console.log("bosildi", modalLogic);
 }
 function addData(){
-    console.log("navigation ichidagi button bosilddi");
-    swal({
-        title: "Good job!",
-        text: "Shaxar kuzatish uchun Qushildi",
-        icon: "success",
-        timer: 1500
-    })
+   
     routeInfo.setshareRouteInfo(routeInfo.routeInfo)
 }
 </script>

@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import axios from "axios";
+import swal  from "sweetalert";
 
 export const useRouteInfo = defineStore("info", () => {
   const routeInfo = ref(null);
@@ -47,8 +48,19 @@ export const useRouteInfo = defineStore("info", () => {
       const mavjud = weatherData.value.some((item) => item.id === data.id);
       if (!mavjud) {
         weatherData.value.push(data);
-        console.log(" Yangi ob-havo malumoti qoshildi:", data.name);
+         swal({
+        title: "Good job!",
+        text: "Shaxar kuzatish uchun Qushildi",
+        icon: "success",
+        timer: 1500
+    })
       } else {
+        swal({
+            title: "Afsus",
+            text:"Bu shaxar allaqachon kuzatilobdi",
+            icon : "warning",
+            timer : 1500
+        })
         console.log("Bu shahar ob-havosi allaqachon kuzatilmoqda:", data.name);
       }
 

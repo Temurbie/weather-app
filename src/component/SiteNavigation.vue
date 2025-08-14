@@ -6,9 +6,9 @@
                 <p class="text-2xl">The Local Weather</p>
             </RouterLink>
             <div class="flex gap-3 flex-1 justify-end ">
-                <i @click="toggleModal" class="fa-solid fa-circle-info text-xl
-                hover:text-weather-secondary duration-150 cursor-pointer"></i>
-                <i @click="routeInfo.setshareRouteInfo(routeInfo.routeInfo)" class="fa-solid fa-plus text-xl
+                <!-- <i @click="toggleModal" class="fa-solid fa-circle-info text-xl
+                hover:text-weather-secondary duration-150 cursor-pointer"></i> -->
+                <i @click="addData" class="fa-solid fa-plus text-xl
                 hover:text-weather-secondary duration-150 cursor-pointer"></i>
             </div>
             <BaseModel :modalLogic="modalLogic" @close-modal="toggleModal">
@@ -23,6 +23,7 @@ import { RouterLink } from 'vue-router';
 import BaseModel from './BaseModel.vue';
 import {ref } from 'vue'
 import { useRouteInfo } from '@/stories/useRoutInfo';
+import swal from 'sweetalert'
 
 const routeInfo = useRouteInfo()
 
@@ -31,6 +32,16 @@ const toggleModal = () =>{
     
     modalLogic.value = !modalLogic.value
     console.log("bosildi", modalLogic);
+}
+function addData(){
+    console.log("navigation ichidagi button bosilddi");
+    swal({
+        title: "Good job!",
+        text: "Shaxar kuzatish uchun Qushildi",
+        icon: "success",
+        timer: 1500
+    })
+    routeInfo.setshareRouteInfo(routeInfo.routeInfo)
 }
 </script>
 

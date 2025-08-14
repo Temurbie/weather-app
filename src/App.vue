@@ -12,7 +12,7 @@ const route = useRoute();
     <RouterView />
     <SaveListComponent
       v-if="route.name !== 'cityView'" 
-      class="border border-white rounded p-4 inline-block px-4"
+      class="contain-style"
     />
   </div>
 </template>

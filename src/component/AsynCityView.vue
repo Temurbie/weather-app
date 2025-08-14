@@ -35,7 +35,8 @@ import { ref, onMounted, computed } from "vue";
 import { useAsyncWeather } from "@/composables/asyncWeather";
 import { useCityImg } from "@/composables/getCityImg";
 import { useI18n } from "vue-i18n";
-import clearSkyIcon from "../assests/icons8-clear-sky-64.png";
+import brokenCloud from "../assests/icons8-clear-sky-64.png";
+import clearSkyIcon from "../assests/png-clipart-sun-orange-sunlight.png";
 
 
 const { getWeather, route, mappedKey, date } = useAsyncWeather();
@@ -50,6 +51,10 @@ const weatherIcon = computed(() => {
   switch (mappedKey.value) {
     case "clear_sky":
       return clearSkyIcon;
+      break
+    case "broken_clouds":
+    return brokenCloud
+      break
   }
 });
 onMounted(async () => {

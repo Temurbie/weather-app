@@ -4,5 +4,6 @@ export  const weatherMapping: Record<string, string> = {
   "mostly sunny": "mostly_sunny",
   "mostly cloudy": "mostly_cloudy",
   "cloudy": "cloudy",
-  "overcast": "overcast"
+  "overcast": "overcast",
+  "broken clouds" : "broken_clouds"
 };

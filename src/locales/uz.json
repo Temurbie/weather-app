@@ -5,6 +5,7 @@
     "mostly_sunny": "Aksar bulutsiz, biroz bulutli bo‘lishi mumkin",
     "mostly_cloudy": "Aksar osmon bulut bilan qoplangan",
     "cloudy": "Qattiq bulutli",
-    "overcast": "Toʻliq bulutli, qorong‘u osmon"
+    "overcast": "Toʻliq bulutli, qorong‘u osmon",
+    "broken_clouds": "ko‘p bulutli"
   }
 }

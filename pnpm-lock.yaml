@@ -14,6 +14,9 @@ importers:
       pinia:
         specifier: ^3.0.3
         version: 3.0.3(vue@3.5.18)
+      sweetalert:
+        specifier: ^2.1.2
+        version: 2.1.2
       vue:
         specifier: ^3.5.18
         version: 3.5.18
@@ -779,6 +782,9 @@ packages:
     resolution: {integrity: sha512-j6vWzfrGVfyXxge+O0x5sh6cvxAog0a/4Rdd2K36zCMV5eJ+/+tOAngRO8cODMNWbVRdVlmGZQL2YS3yR8bIUA==}
     engines: {node: '>= 0.4'}
 
+  es6-object-assign@1.1.0:
+    resolution: {integrity: sha512-MEl9uirslVwqQU369iHNWZXsI8yaZYGg/D65aOgZkeyFJwHYSxilf7rQzXKI7DdDuBPrBXbfk3sl9hJhmd5AUw==}
+
   esbuild@0.25.8:
     resolution: {integrity: sha512-vVC0USHGtMi8+R4Kz8rt6JhEWLxsv9Rnu/lGYbPR8u47B+DCBksq9JarW0zOO7bs37hyOK1l2/oqtbciutL5+Q==}
     engines: {node: '>=18'}
@@ -1175,6 +1181,9 @@ packages:
     resolution: {integrity: sha512-4yf0QO/sllf/1zbZWYnvWw3NxCQwLXKzIj0G849LSufP15BXKM0rbD2Z3wVnkMfjdn/CB0Dpp444gYAACdsplg==}
     engines: {node: '>=18'}
 
+  promise-polyfill@6.1.0:
+    resolution: {integrity: sha512-g0LWaH0gFsxovsU7R5LrrhHhWAWiHRnh1GPrhXnPgYsDkIqjRYUYSZEsej/wtleDrz5xVSIDbeKfidztp2XHFQ==}
+
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
@@ -1272,6 +1281,9 @@ packages:
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  sweetalert@2.1.2:
+    resolution: {integrity: sha512-iWx7X4anRBNDa/a+AdTmvAzQtkN1+s4j/JJRWlHpYE8Qimkohs8/XnFcWeYHH2lMA8LRCa5tj2d244If3S/hzA==}
 
   tailwindcss@3.4.17:
     resolution: {integrity: sha512-w33E2aCvSDP0tW9RZuNXadXlkHXqFzSkQew/aIa2i/Sj8fThxwovwlXHSPXTbAHwEIhBFXAedUhP2tueAKP8Og==}
@@ -2143,6 +2155,8 @@ snapshots:
       has-tostringtag: 1.0.2
       hasown: 2.0.2
 
+  es6-object-assign@1.1.0: {}
+
   esbuild@0.25.8:
     optionalDependencies:
       '@esbuild/aix-ppc64': 0.25.8
@@ -2499,6 +2513,8 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
+  promise-polyfill@6.1.0: {}
+
   proxy-from-env@1.1.0: {}
 
   queue-microtask@1.2.3: {}
@@ -2610,6 +2626,11 @@ snapshots:
       copy-anything: 3.0.5
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  sweetalert@2.1.2:
+    dependencies:
+      es6-object-assign: 1.1.0
+      promise-polyfill: 6.1.0
 
   tailwindcss@3.4.17:
     dependencies:

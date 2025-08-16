@@ -10,6 +10,7 @@
           v-if="modalLogic"  
           class="p-4 bg-white self-start mt-32 max-w-md rounded"
         >
+        <img src="@/assets/"/>
           <slot />
           <button 
             @click="$emit('close-modal')" 
@@ -22,8 +23,18 @@
   </Transition>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
+// const emit = defineEmits<{
+//  (e: 'close-modal'): void
+// }>()
+// const props = withDefaults(defineProps<{
+//   modalLogic: boolean
+// }>(), {
+//   modalLogic: false
+// })
+
+emit('close-modal')
 defineEmits(['close-modal'])
 defineProps({
     modalLogic:{

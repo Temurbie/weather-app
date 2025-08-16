@@ -20,7 +20,7 @@
 
 <script setup>
 import { RouterLink } from 'vue-router';
-import BaseModel from './BaseModel.vue';
+import BaseModel from './BaseModal.vue';
 import {ref } from 'vue'
 import { useRouteInfo } from '@/stories/useRoutInfo';
 import swal from 'sweetalert'

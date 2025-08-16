@@ -4,7 +4,6 @@ import { ref, computed } from "vue";
 import {weatherMapping} from "../locales/mapping"
 
 export function useAsyncWeather() {
-  const route = useRoute();
   let apiDescription = ref(null);
   let date = ref(null)
   let mappedKey = computed(()=>{

@@ -37,31 +37,44 @@ import { useCityImg } from "@/composables/getCityImg";
 import { useI18n } from "vue-i18n";
 import brokenCloud from "../assests/icons8-clear-sky-64.png";
 import clearSkyIcon from "../assests/png-clipart-sun-orange-sunlight.png";
+import WeatherService from "@/services/weather-service";
 
-
-const { getWeather, route, mappedKey, date } = useAsyncWeather();
-const { imageUrl, getData } = useCityImg();
-const weather = ref(null);
-const { t } = useI18n();
 const timeDate = date
 
+// const { getWeather, route, mappedKey, date } = useAsyncWeather();
+const { imageUrl, getData } = useCityImg();
+const { t } = useI18n();
+const route = useRoute();
 
-
+const weather = ref(null);
 const weatherIcon = computed(() => {
   switch (mappedKey.value) {
     case "clear_sky":
       return clearSkyIcon;
       break
     case "broken_clouds":
-    return brokenCloud
+      return brokenCloud
       break
   }
 });
+
+async function getWeather(params) {
+  try {
+    const response = await WeatherService.getWeather(route.query.lat, route.query.lang)
+    weather.value = response.data
+  }catch(error) {
+    console.error(error)
+  }
+}
+
+
+
+
+
+
 onMounted(async () => {
-  weather.value = await getWeather();
+  await getWeather();
   await getData();
   console.log(date.value);
-  
-  
 });
 </script>

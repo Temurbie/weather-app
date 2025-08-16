@@ -6,6 +6,7 @@ import './assests/tailwind.css'
 import uz from '@/locales/uz.json'
 import eng from '@/locales/eng.json'
 import { createPinia } from 'pinia'
+
 const app = createApp(App)
 const pinia = createPinia()
 const i18n = createI18n({

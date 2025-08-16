@@ -6,7 +6,7 @@ import { useRouteInfo } from "@/stories/useRoutInfo";
 
 export function useSearchLocation() {
   const routeInfoPinia = useRouteInfo()
-   const router = useRouter()
+  const router = useRouter()
   const mapboxAPIKey =
     "pk.eyJ1IjoidGVtdXJiaWUiLCJhIjoiY21kdm5kMnFiMHV6aTJtcXdldXQyMjZqZyJ9.UOnPbHgIHIwRStwVhma4yw";
   const searchQuery = ref("");

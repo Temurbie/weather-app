@@ -13,7 +13,7 @@
           <slot />
           <button 
             @click="$emit('close-modal')" 
-            class="mt-8 bg-weather-primary text-white py-2 px-6 rounded">
+            class="mt-8 bg-weather-primary text-black py-2 px-6 rounded">
             Close
           </button>
         </div>

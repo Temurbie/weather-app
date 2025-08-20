@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
-import { useRouteInfo } from "@/stories/useRoutInfo";
+import { useRouteInfo } from "@/storie/useRoutInfo";
 
 
 export function useSearchLocation() {

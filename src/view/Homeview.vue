@@ -1,15 +1,9 @@
 <template>
-  <main class="container text-white">
+  <main class="container text-black">
     <div class="mb-8 pt-4 relative">
-      <input
-        @input="getSearchResult"
-        type="text"
-        v-model="searchQuery"
-        class="bg-transparent py-2 px-1 w-full border-b focus:border-weather-secondary focus:outline-none focus:shadow-[0px_1px_0_0#004E71]"
-        placeholder="Mintaqa yoki shaxar izlang"
-/>
+     <Input @input="getSearchResult" v-model="searchQuery" placeholder="Shaxar nomi"/>
       <ul
-        class="w-full absolute bg-weather-secondary text-white shadow-md py-2 px-1 top[-66px]"
+        class="w-full absolute bg-weather-secondary text-black shadow-md py-2 px-1 top[-66px]"
       >
         <p v-if="haveError">nimadir hato</p>
         <p v-else-if="searchQuery && mapBoxSearchResult.length == 0">
@@ -34,6 +28,7 @@
 <script setup>
 
 import { useSearchLocation } from "@/composables/useSearchLocation";
+import Input from "../components/ui/input/Input.vue";
 const { getSearchResult, searchQuery, mapBoxSearchResult, haveError, previewCity } =
   useSearchLocation();
 

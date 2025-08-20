@@ -1,7 +1,7 @@
 <script setup>
 import { RouterView, useRoute } from 'vue-router';
 import SiteNavigation from './component/SiteNavigation.vue';
-import SaveListComponent from './component/SaveListComponent.vue';
+import TheWeather from './component/TheWeather.vue';
 
 const route = useRoute();
 </script>
@@ -10,7 +10,7 @@ const route = useRoute();
   <div class="flex flex-col min-h-screen font-Roboto bg-weather-primary">
     <SiteNavigation />
     <RouterView />
-    <SaveListComponent
+    <TheWeather
       v-if="route.name !== 'cityView'" 
       class="contain-style"
     />

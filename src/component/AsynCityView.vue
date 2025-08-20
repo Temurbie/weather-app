@@ -1,5 +1,5 @@
 <template>
-  <div class="relative p-3 text-white">
+  <div class="relative p-3 text-black">
     <div
       class="absolute inset-0 bg-cover bg-center filter blur-sm"
       :style="{ backgroundImage: `url(${imageUrl})` }"

@@ -10,6 +10,7 @@ const route = useRoute();
   <div class="flex flex-col min-h-screen font-Roboto bg-weather-primary">
     <SiteNavigation />
     <RouterView />
+    <hr>
     <TheWeather
       v-if="route.name !== 'cityView'" 
       class="contain-style"

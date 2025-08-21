@@ -9,6 +9,7 @@ export const useRouteInfo = defineStore("info", () => {
   const shareRouteInfo:any = ref([]);
   const weatherData = ref<Place []>([]);
   const shareDataIsLocalStorage = ref<Place[]>([]);
+  let alertUchun= ref<boolean>(false)
 
   function setrouteInfo(info:any) {
     routeInfo.value = info;
@@ -32,7 +33,9 @@ export const useRouteInfo = defineStore("info", () => {
       weatherData.value.push(weather)
 
       localStorage.setItem("weatherData", JSON.stringify(weatherData.value))
+      alertUchun.value = !alertUchun.value;
       const getItemLocalStorage = localStorage.getItem("weatherData");
+
       try{
         
       if(getItemLocalStorage){
@@ -47,6 +50,9 @@ export const useRouteInfo = defineStore("info", () => {
       return true;
     }
     return false;
+  }
+  function restAlert(){
+      return alertUchun.value = false
   }
   function loadFromLocalStorage() {
     const saved = localStorage.getItem("weatherData");
@@ -67,6 +73,8 @@ export const useRouteInfo = defineStore("info", () => {
     setrouteInfo,
     setshareRouteInfo,
     shareDataIsLocalStorage,
-    loadFromLocalStorage
+    loadFromLocalStorage,
+    alertUchun,
+    restAlert
   };
 });

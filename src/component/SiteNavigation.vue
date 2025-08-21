@@ -1,3 +1,48 @@
+<script setup>
+import { RouterLink, useRoute } from 'vue-router'
+import BaseModel from './BaseModel.vue'
+import { useRouteInfo } from '@/storie/useRoutInfo'
+import { ref, watch } from 'vue'
+import swal from 'sweetalert'
+
+const routeInfo = useRouteInfo()
+
+const route = useRoute()
+
+const modalLogic = ref(false)
+function doSwal() {
+  return swal({
+    text: "Shaxar Saqlandi",
+    timer: 1100,
+    icon: "success",
+    buttons: false
+
+  })
+}
+watch(
+  () => routeInfo.alertUchun,
+  (yangiQiymat) => {
+    if (yangiQiymat) {
+        console.log(yangiQiymat);
+        
+      doSwal();
+      routeInfo.restAlert();
+    }
+  }
+)
+
+const toggleModal = () => {
+  modalLogic.value = !modalLogic.value
+  console.log("bosildi", modalLogic.value)
+}
+
+function addData() {
+  // routeInfo store ichidagi method ishlatilmoqda
+  routeInfo.setshareRouteInfo(routeInfo.routeInfo)
+}
+</script>
+
+
 <template>
    <header class="sticky  top-0 bg-weather-primary shadow-lg">
         <nav class="container flex flex-col sm:flex-row items-center gap-4 text-black py-6">
@@ -17,26 +62,4 @@
         </nav>
    </header>
 </template>
-
-<script setup>
-import { RouterLink } from 'vue-router';
-import BaseModel from './BaseModel.vue';
-import { useRouteInfo } from '@/storie/useRoutInfo';
-import { useRoute } from 'vue-router';
-import {ref } from 'vue'
-
-const route = useRoute()
-const routeInfo = useRouteInfo()
-
-const modalLogic = ref(null);
-const toggleModal = () =>{
-    
-    modalLogic.value = !modalLogic.value
-    console.log("bosildi", modalLogic);
-}
-function addData(){
-   
-    routeInfo.setshareRouteInfo(routeInfo.routeInfo)
-}
-</script>
 

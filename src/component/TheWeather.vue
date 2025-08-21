@@ -16,7 +16,7 @@ onMounted(() => {
 
 <template>
 <div class="grid  gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 w-full px-6">
-    <SaveListComponent  class="shadow-2xl cursor-pointer hover:bg-black-700"
+    <SaveListComponent  class="shadow-2xl  hover:border-red-400"
     v-for="item in store.shareDataIsLocalStorage"
     :key="item.id"
     :id="item.id"

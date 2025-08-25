@@ -1,40 +1,42 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
+import { useI18n } from "vue-i18n";
+
 import { useAsyncWeather } from "@/composables/asyncWeather";
 import { useCityImg } from "@/composables/getCityImg";
-import { useI18n } from "vue-i18n";
-import brokenCloud from "../assests/icons8-clear-sky-64.png";
-import clearSkyIcon from "../assests/png-clipart-sun-orange-sunlight.png";
+
+import { weatherIcons } from "@/constants/weatherIcons";
+
 
 
 const { getWeather, route, mappedKey, date } = useAsyncWeather();
 const { imageUrl, getData } = useCityImg();
+
 const weather = ref(null);
-const { t } = useI18n();
 const timeDate = date
+
+const { t } = useI18n();
+
+
 const temp = computed(()=>{
   return weather.value?.main ?  Math.floor((weather.value.main.temp - 32) * 5 / 9) : 0
-  
 })
 
-
-
 const weatherIcon = computed(() => {
-  switch (mappedKey.value) {
-    case "clear_sky":
-      return clearSkyIcon;
-      break
-    case "broken_clouds":
-    return brokenCloud
-      break
-  }
+   return weatherIcons[mappedKey.value] ?? '';
 });
+
+const weatherName = computed (()=>{
+  return weather.value?.name || ""
+})
+
+const windDirection = computed (()=>{
+  weather.value?.wind?.deg || 0
+})
+
 onMounted(async () => {
   weather.value = await getWeather();
-  await getData();
-  console.log(date.value);
-  
-  
+  await getData();  
 });
 </script>
 
@@ -46,17 +48,15 @@ onMounted(async () => {
       :style="{ backgroundImage: `url(${imageUrl})` }"
     ></div>
     <div class="relative z-10">
-      <p class="text-center text-1xl p-3" v-if="route.query.preview">
+      <p class="text-center text-xl p-3" v-if="route.query.preview">
         Ushbu Shaxarni kuzatish uchun "+" tugmasini bosing
       </p>
 
       <div class="mt-1 text-center flex justify-center flex-col text-2xl">
-        <div class="flex flex-col justify-center items-center">
-        </div>
         <div class="bg-white/35 text-black inline-block mx-auto p-5 rounded">
-          <p class="text-7xl">{{ weather?.name }}</p>
+          <p class="text-7xl">{{ weatherName }}</p>
           <img class="m-auto p-3 w-40 h-auto" :src="weatherIcon" alt="" />
-          <p class="text-5xl">{{ temp}} °C</p>
+          <p class="text-5xl">{{ temp }} °C</p>
           <p>{{ $t(`weather.${mappedKey}`) }}</p>
         </div>
 
@@ -64,7 +64,7 @@ onMounted(async () => {
           <p>
           {{ timeDate }}
         </p>
-        <p>shamol {{ weather?.wind?.deg }}</p>
+        <p>shamol {{ windDirection }}</p>
         </div>
       </div>
     </div>

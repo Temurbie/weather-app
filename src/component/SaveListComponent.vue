@@ -1,43 +1,28 @@
 <script setup lang="ts">
 
+import { ref, computed } from 'vue'
 import { useI18n } from "vue-i18n";
-import {ref,watchEffect} from 'vue'
-import Card from "@/components/ui/card/Card.vue";
-import { Place } from "../interface/place";
+
 import {weatherMapping} from "../locales/mapping";
-import TheButton from "./TheButton.vue";
+import { Place } from "../interface/place";
+import Card from "@/components/ui/card/Card.vue";
+
 
 const props = defineProps<Place>();
+
 const {t} = useI18n()
 const img = ref(null)
-const weatherDescription = ref(props.weather[0].description);
-const havoHarorati = ref(props.main.temp);
 const deleted = ref(false)
-function haroratniUzgartir(){
-  return havoHarorati.value = Math.floor((havoHarorati.value-32)*5/9)
-}
-
-function handleDelete(){
-  console.log("bosildi");
-  
-  deleted.value = true
-}
-
-function tarjima(){
-  return weatherDescription.value = weatherMapping[weatherDescription.value] || "unknown"
-}
 
 
-watchEffect(()=>{
-  haroratniUzgartir();
-  tarjima();
-  console.log("ishladi", havoHarorati.value);
-  
-})
-function test(event: MouseEvent) {
-  const button = event.currentTarget as HTMLElement;
-  console.log(button);
-}
+const weatherDescription = computed (()=> props.weather[0].description)
+
+const havoHarorati = computed(()=> Math.floor((props.main.temp  - 32) * 5 /9 ))
+
+const tarjima = computed(()=> weatherMapping[weatherDescription.value] || "unknown")
+
+
+
 
 
 </script>
@@ -52,20 +37,13 @@ function test(event: MouseEvent) {
     <div
       class="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
     >
-      <TheButton
-        class="cursor-pointer"
-        @click.stop="handleDelete"
-        size="sm"
-       
-      >
-        Delete
-      </TheButton>
+      
     </div>
 
     <h1>{{ name }}</h1>
     <p>Harorat: {{ havoHarorati }} °C</p>
     <p>
-      Havo Holat: <span>{{ $t(`weather.${weatherDescription}`) }}</span>
+      Havo Holat: <span>{{ $t(`weather.${tarjima}`) }}</span>
     </p>
     <p>Shamol Tezligi: {{ Math.floor(wind.speed) }} km/s</p>
   </Card>

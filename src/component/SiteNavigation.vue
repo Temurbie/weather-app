@@ -1,31 +1,34 @@
-<script setup>
-import { RouterLink, useRoute } from 'vue-router'
-import BaseModel from './BaseModel.vue'
-import { useRouteInfo } from '@/storie/useRoutInfo'
+<script setup lang="ts">
+
 import { ref, watch } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
 import swal from 'sweetalert'
 
-const routeInfo = useRouteInfo()
-
-const route = useRoute()
+import { useRouteInfo } from '@/storie/useRoutInfo'
+import BaseModal from './BaseModal.vue'
+import { guideText } from '@/constants/guideText';
 
 const modalLogic = ref(false)
-function doSwal() {
+const routeInfo = useRouteInfo()
+const route = useRoute()
+
+
+function doSwal(qiymat : string) {
   return swal({
-    text: "Shaxar Saqlandi",
+    text : qiymat,
     timer: 1100,
     icon: "success",
-    buttons: false
+    
 
   })
 }
+
+
 watch(
   () => routeInfo.alertUchun,
   (yangiQiymat) => {
     if (yangiQiymat) {
-        console.log(yangiQiymat);
-        
-      doSwal();
+      doSwal("Shaxar Qushildi");
       routeInfo.restAlert();
     }
   }
@@ -33,11 +36,9 @@ watch(
 
 const toggleModal = () => {
   modalLogic.value = !modalLogic.value
-  console.log("bosildi", modalLogic.value)
 }
 
 function addData() {
-  // routeInfo store ichidagi method ishlatilmoqda
   routeInfo.setshareRouteInfo(routeInfo.routeInfo)
 }
 </script>
@@ -51,14 +52,16 @@ function addData() {
                 <p class="text-2xl">The Local Weather</p>
             </RouterLink>
             <div class="flex gap-3 flex-1 justify-end ">
-                <!-- <i @click="toggleModal" class="fa-solid fa-circle-info text-xl
-                hover:text-weather-secondary duration-150 cursor-pointer"></i> -->
+                <i @click="toggleModal" class="fa-solid fa-circle-info text-xl
+                hover:text-weather-secondary duration-150 cursor-pointer"></i>
                 <i v-if="route.name !=='home'" @click="addData" class="fa-solid fa-plus text-xl
                 hover:text-weather-secondary duration-150 cursor-pointer"></i>
             </div>
-            <BaseModel :modalLogic="modalLogic" @close-modal="toggleModal">
-                <h1 class="text-red-700">salom men modulman</h1>
-            </BaseModel>
+            <BaseModal :modalLogic="modalLogic" @close-modal="toggleModal">
+                <div class="text-black-700 mt-10" v-html="guideText">
+                  
+                </div>
+            </BaseModal>
         </nav>
    </header>
 </template>

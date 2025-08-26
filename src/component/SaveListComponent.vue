@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { ref, computed } from 'vue'
+import { ref, computed, toRefs } from 'vue'
 import { useI18n } from "vue-i18n";
 
 import {weatherMapping} from "../locales/mapping";
@@ -8,22 +8,25 @@ import { Place } from "../interface/place";
 import Card from "@/components/ui/card/Card.vue";
 
 
-const props = defineProps<Place>();
+const props = defineProps<{
+  data : Place
+}>();
 
+const {data} = toRefs(props)
 const {t} = useI18n()
 const img = ref(null)
 const deleted = ref(false)
 
 
-const weatherDescription = computed (()=> props.weather[0].description)
+const weatherDescription = computed (()=> data.value.weather[0]?.description)
 
-const havoHarorati = computed(()=> Math.floor((props.main.temp  - 32) * 5 /9 ))
+const havoHarorati = computed(()=> Math.floor((data.value.main?.temp  - 32) * 5 /9 ))
 
 const tarjima = computed(()=> weatherMapping[weatherDescription.value] || "unknown")
 
+const shamolTezligi = computed(()=> Math.floor( data.value.wind?.speed))
 
-
-
+const sityName = computed(() => data.value.name)
 
 </script>
 
@@ -40,12 +43,12 @@ const tarjima = computed(()=> weatherMapping[weatherDescription.value] || "unkno
       
     </div>
 
-    <h1>{{ name }}</h1>
+    <h1>{{ sityName }}</h1>
     <p>Harorat: {{ havoHarorati }} °C</p>
     <p>
       Havo Holat: <span>{{ $t(`weather.${tarjima}`) }}</span>
     </p>
-    <p>Shamol Tezligi: {{ Math.floor(wind.speed) }} km/s</p>
+    <p>Shamol Tezligi: {{ shamolTezligi }} km/s</p>
   </Card>
  </div>
 </template>

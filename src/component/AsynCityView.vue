@@ -13,7 +13,7 @@ const { getWeather, route, mappedKey, date } = useAsyncWeather();
 const { imageUrl, getData } = useCityImg();
 
 const weather = ref(null);
-const timeDate = date
+const timeDate = computed(()=> date || 0)
 
 const { t } = useI18n();
 
@@ -23,7 +23,7 @@ const temp = computed(()=>{
 })
 
 const weatherIcon = computed(() => {
-   return weatherIcons[mappedKey.value] ?? '';
+  return weatherIcons[mappedKey.value] ?? '';
 });
 
 const weatherName = computed (()=>{
@@ -36,6 +36,7 @@ const windDirection = computed (()=>{
 
 onMounted(async () => {
   weather.value = await getWeather();
+  console.log("Weatherdan", weather.value);
   await getData();  
 });
 </script>
@@ -64,7 +65,7 @@ onMounted(async () => {
           <p>
           {{ timeDate }}
         </p>
-        <p>shamol {{ windDirection }}</p>
+        <p> {{ windDirection }}</p>
         </div>
       </div>
     </div>

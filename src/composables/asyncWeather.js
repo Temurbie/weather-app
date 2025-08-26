@@ -1,32 +1,38 @@
-import axios from "axios";
-import { useRoute } from "vue-router";
 import { ref, computed } from "vue";
-import {weatherMapping} from "../locales/mapping"
+import { useRoute } from "vue-router";
+import weatherService from "@/services/weatherService";
+import { weatherMapping } from "../locales/mapping";
 
 export function useAsyncWeather() {
   const route = useRoute();
-  let apiDescription = ref(null);
-  let date = ref(null)
-  let mappedKey = computed(()=>{
-    return weatherMapping[apiDescription.value] || "unknown"
-  })
+  const apiDescription = ref("");
+  const date = ref(null);
 
+  const lat = Number(route.query.lat);
+  const lon = Number(route.query.lon);
+
+  const mappedKey = computed(() => weatherMapping[apiDescription.value] || "unknown");
+  
   async function getWeather() {
+    if (!lat || !lon) {
+      console.warn("Lat yoki Lon noto‘g‘ri");
+      return null;
+    }
+
     try {
-      const dataWeather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${route.query.lat}&lon=${route.query.lang}&appid=8a80ec6d7e7192c50cd139ba06fc708f&units=imperial`
-      );
-      apiDescription.value = dataWeather.data.weather[0].description.toLowerCase();
-      date.value = new Date(Date.now()  + dataWeather.data.timezone * 1000);
-      console.log(dataWeather,"getweatherdan");
+      const dataWeather= await weatherService.getWeather(lat, lon);
+      console.log("DATA", dataWeather);
       
-      return dataWeather.data
+      apiDescription.value = dataWeather.weather[0].description.toLowerCase();
+      date.value = new Date(Date.now() + dataWeather.timezone * 1000);
+
+      console.log(dataWeather, "getWeatherdan");
+      return dataWeather;
     } catch (err) {
-      console.log(err);
+      console.error("Weather API error:", err);
+      return null;
     }
   }
 
-  
-// }
-  // getTime()
-  return { getWeather, route, mappedKey,date}
+  return { getWeather, route, mappedKey, date };
 }

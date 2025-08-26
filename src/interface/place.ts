@@ -1,5 +1,5 @@
 export interface Place{
-    id:string,
+    id:number,
     name: string,
     weather:{
         description: string

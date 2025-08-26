@@ -55,7 +55,7 @@ export function useSearchLocation() {
       params: { state : state.replaceAll("",""), city : city},
       query:{
         lat : result.geometry.coordinates[1],
-        lang : result.geometry.coordinates[0],
+        lon : result.geometry.coordinates[0],
         preview: true
       }
     })

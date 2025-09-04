@@ -36,7 +36,6 @@ const windDirection = computed (()=>{
 
 onMounted(async () => {
   weather.value = await getWeather();
-  console.log("Weatherdan", weather.value);
   await getData();  
 });
 </script>

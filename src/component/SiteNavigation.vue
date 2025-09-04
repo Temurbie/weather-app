@@ -2,7 +2,7 @@
 
 import { ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
-import swal from 'sweetalert'
+import doSwal from '@/services/doSwal'
 
 import { useRouteInfo } from '@/storie/useRoutInfo'
 import BaseModal from './BaseModal.vue'
@@ -13,19 +13,11 @@ const routeInfo = useRouteInfo()
 const route = useRoute()
 
 
-function doSwal(qiymat : string) {
-  return swal({
-    text : qiymat,
-    timer: 1100,
-    icon: "success",
-    
-
-  })
-}
 
 
 watch(
   () => routeInfo.alertUchun,
+  
   (yangiQiymat) => {
     if (yangiQiymat) {
       doSwal("Shaxar Qushildi");

@@ -1,37 +1,35 @@
 import { ref } from "vue";
-import axios from "axios";
+
 import { useRouter } from "vue-router";
 import { useRouteInfo } from "@/storie/useRoutInfo";
-
+import MapBoxSearchCity from "../services/mapBoxSerachCity.ts"
 
 export function useSearchLocation() {
-  const routeInfoPinia = useRouteInfo()
-   const router = useRouter()
-  const mapboxAPIKey =
-    "pk.eyJ1IjoidGVtdXJiaWUiLCJhIjoiY21kdm5kMnFiMHV6aTJtcXdldXQyMjZqZyJ9.UOnPbHgIHIwRStwVhma4yw";
+  
   const searchQuery = ref("");
   const queryTimeout = ref(null);
   const mapBoxSearchResult = ref([]);
   const haveError = ref(false)
+
+  const routeInfoPinia = useRouteInfo()
+  const router = useRouter()
+
+  const mapboxAPIKey = import.meta.env.VITE_MAPBOX_KEY 
+    
+
   function getSearchResult() {
+
     clearTimeout(queryTimeout.value);
 
     if (searchQuery.value !== "") {
       queryTimeout.value = setTimeout(async () => {
         try{
-            const result = await axios.get(
-          `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxAPIKey}&types=place`
-          
-        );
-        console.log("mapbox",mapBoxSearchResult);
-        mapBoxSearchResult.value = result.data.features;
-        
-        
+         clearTimeout(queryTimeout.value);
+         mapBoxSearchResult.value = await MapBoxSearchCity.getCites(searchQuery.value, mapboxAPIKey )
         }catch{
             haveError.value = true
         }
       }, 300);
-      console.log("ishladi", mapBoxSearchResult.value);
     }else if(searchQuery.value == ""){
       mapBoxSearchResult.value = []
     }else{
@@ -46,8 +44,7 @@ export function useSearchLocation() {
    
    const [ state, city ]= result.place_name.split(",")
    routeInfoPinia.setrouteInfo(result)
-   console.log("router infoga malumot berildi", routeInfoPinia.routeInfo);
-   console.log(routeInfoPinia.routeInfo);
+
    
    
     router.push({
@@ -59,9 +56,6 @@ export function useSearchLocation() {
         preview: true
       }
     })
-   console.log(router);
-   
-    
   }
 
 

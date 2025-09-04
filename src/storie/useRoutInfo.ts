@@ -11,10 +11,11 @@ export const useRouteInfo = defineStore("info", () => {
   const shareRouteInfo:any = ref([]);
   const weatherData = useStorage<Place[]>("weatherData", [])
   let alertUchun= ref<boolean>(false)
+  const cacheCartData = ref<Place[]>([])
 
   function setrouteInfo(info:any) {
     routeInfo.value = info;
-    console.log("setbuldi", routeInfo.value?.id);
+
   }
 
   async function setshareRouteInfo(data : any) {
@@ -30,10 +31,10 @@ export const useRouteInfo = defineStore("info", () => {
     
  
     const alreadyWeather = weatherData.value.some((item) => item.id === weather.id);
-    console.log(alreadyWeather, "weatherdandd");
     
     if (!alreadyWeather) {
     weatherData.value.push(weather)
+    alertUchun.value = true;
     return true
   }
 
@@ -43,6 +44,23 @@ export const useRouteInfo = defineStore("info", () => {
       return alertUchun.value = false
   }
 
+ function deleteCardInStorage(id: number) {
+  weatherData.value = weatherData.value.filter(item => item.id !== id)
+}
+function deleteAllCard(){
+ 
+  
+  cacheCartData.value = [...weatherData.value];
+   weatherData.value = []
+   
+}
+
+function workUndoBtn(){
+  weatherData.value = [...cacheCartData.value]
+}
+
+
+
   return {
     routeInfo,
     shareRouteInfo,
@@ -50,6 +68,10 @@ export const useRouteInfo = defineStore("info", () => {
     setrouteInfo,
     setshareRouteInfo,
     alertUchun,
-    restAlert
+    restAlert,
+    deleteCardInStorage,
+    deleteAllCard,
+    cacheCartData,
+    workUndoBtn
   };
 });

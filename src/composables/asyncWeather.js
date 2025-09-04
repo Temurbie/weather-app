@@ -15,19 +15,16 @@ export function useAsyncWeather() {
   
   async function getWeather() {
     if (!lat || !lon) {
-      console.warn("Lat yoki Lon noto‘g‘ri");
       return null;
     }
 
     try {
       const dataWeather= await weatherService.getWeather(lat, lon);
-      console.log("DATA", dataWeather);
       
       apiDescription.value = dataWeather.weather[0].description.toLowerCase();
       date.value = new Date(Date.now() + dataWeather.timezone * 1000);
-
-      console.log(dataWeather, "getWeatherdan");
       return dataWeather;
+      
     } catch (err) {
       console.error("Weather API error:", err);
       return null;

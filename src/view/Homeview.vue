@@ -29,6 +29,7 @@
 
 import { useSearchLocation } from "@/composables/useSearchLocation";
 import Input from "../components/ui/input/Input.vue";
+
 const { getSearchResult, searchQuery, mapBoxSearchResult, haveError, previewCity } =
   useSearchLocation();
 

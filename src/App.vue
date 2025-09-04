@@ -6,7 +6,7 @@ import TheWeather from './component/TheWeather.vue';
 const route = useRoute();
 </script>
 
-<template>
+<template id="app">
   <div class="flex flex-col min-h-screen font-Roboto bg-weather-primary">
     <SiteNavigation />
     <RouterView />
@@ -18,3 +18,9 @@ const route = useRoute();
   </div>
 </template>
 
+<style scoped>
+#app{
+  width: 100%;
+  min-height: 100vh;
+}
+</style>

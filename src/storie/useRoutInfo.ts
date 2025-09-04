@@ -12,7 +12,8 @@ export const useRouteInfo = defineStore("info", () => {
   const weatherData = useStorage<Place[]>("weatherData", [])
   let alertUchun= ref<boolean>(false)
   const cacheCartData = ref<Place[]>([])
-
+  let workedUndoButton = ref<boolean>(false)
+  const count = ref(0);
   function setrouteInfo(info:any) {
     routeInfo.value = info;
 
@@ -47,16 +48,39 @@ export const useRouteInfo = defineStore("info", () => {
  function deleteCardInStorage(id: number) {
   weatherData.value = weatherData.value.filter(item => item.id !== id)
 }
-function deleteAllCard(){
- 
-  
-  cacheCartData.value = [...weatherData.value];
-   weatherData.value = []
-   
+
+function countFn(second = 5) {
+  count.value = 5 
+  const timer = setInterval(() => {
+    count.value--;
+
+    if (count.value <= 0) {
+      clearInterval(timer); 
+    }
+  }, 1000);
 }
 
-function workUndoBtn(){
-  weatherData.value = [...cacheCartData.value]
+function deleteAllCard(){
+ 
+  if(weatherData.value.length > 0){
+
+      cacheCartData.value = [...weatherData.value];
+      weatherData.value = []
+
+      workedUndoButton.value = true;
+
+      countFn();
+
+      setTimeout(() => {
+        workedUndoButton.value = false
+      }, 5000);
+}
+  }
+
+
+function workUndoButtonFn(){
+  weatherData.value = [...cacheCartData.value];
+  
 }
 
 
@@ -72,6 +96,8 @@ function workUndoBtn(){
     deleteCardInStorage,
     deleteAllCard,
     cacheCartData,
-    workUndoBtn
+    workUndoButtonFn,
+    workedUndoButton,
+    count
   };
 });

@@ -2,13 +2,13 @@
 
 import { useRouteInfo } from '@/storie/useRoutInfo';
 import Button from '@/components/ui/button/Button.vue';
-
+import doSwal from '@/services/doSwal';
 const store = useRouteInfo()
 
 
 function deleteAll(){
-   store.deleteAllCard()
-   
+   store.deleteAllCard();
+   doSwal("Shaxarlar Olib tashlandi")
    
 }
 

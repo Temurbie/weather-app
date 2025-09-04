@@ -10,7 +10,7 @@ const store = useRouteInfo();
 function handleClick(id: number) {
   store.deleteCardInStorage(id);
   doSwal("Shaxar Olib tashlandi");
-  console.log(storeSelected.flagIsSelected);
+ 
 }
 
 </script>

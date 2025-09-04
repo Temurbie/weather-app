@@ -21,7 +21,7 @@ const emit = defineEmits<{
 const {data} = toRefs(props)
 const {t} = useI18n()
 const img = ref(null)
-const deleted = ref(false)
+
 
 
 const weatherDescription = computed (()=> data.value.weather[0]?.description)

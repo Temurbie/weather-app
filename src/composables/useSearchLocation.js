@@ -27,7 +27,6 @@ export function useSearchLocation() {
             mapboxAPIKey
           );
 
-          // har doim massiv qilib beramiz
           mapBoxSearchResult.value = Array.isArray(result) ? result : [];
           haveError.value = false;
         } catch (err) {
@@ -37,7 +36,6 @@ export function useSearchLocation() {
         }
       }, 300);
     } else {
-      // agar qidiruv bo‘sh bo‘lsa, massivni tozalaymiz
       mapBoxSearchResult.value = [];
       queryTimeout.value = null;
     }

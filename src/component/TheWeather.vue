@@ -17,10 +17,10 @@ function handleClick(id: number) {
 
 <template>
   <section>
-    <div  class="text-center mt-4">
+    <div v-if="store.weatherData.length == 0" class="text-center mt-4">
       <span>Malumotlar hali mavjud emas</span>
     </div>
-    <div>
+    <div v-if="store.weatherData.length > 0">
       <div class="w-full px-6 mb-2">
         <ControlButtons></ControlButtons>
       </div>

@@ -8,8 +8,6 @@ import { Place } from "../interface/place";
 import Card from "@/components/ui/card/Card.vue";
 import Button from '@/components/ui/button/Button.vue';
 
-
-
 const props = defineProps<{
   data : Place
 }>();
@@ -41,10 +39,11 @@ function deleteCard(){
 
 <template>
  <div>
+  
   <Card
     class="group   bg-card text-card-foreground hover:bg-muted-foreground hover:scale-110 p-7 rounded-lg text-center"
-    :img="img"
   >
+  
     <div
       class="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
     >

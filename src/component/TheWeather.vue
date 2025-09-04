@@ -21,7 +21,7 @@ function handleClick(id: number) {
       <span>Malumotlar hali mavjud emas</span>
     </div>
     <div v-if="store.weatherData.length > 0">
-      <div class="w-full px-6 mb-2">
+      <div class="w-full px-6 mb-2 mt-2">
         <ControlButtons></ControlButtons>
       </div>
       <div

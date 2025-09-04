@@ -2,12 +2,15 @@
 
 import Button from '@/components/ui/button/Button.vue';
 import { useRouteInfo } from '@/storie/useRoutInfo';
+import { useTheme } from '@/storie/useTheme';
+import { computed } from 'vue';
 
 
 const store = useRouteInfo()
+const pickTheme = useTheme();
 
 
-
+const textColor = computed(() => pickTheme.isDark ? "text-white" : "text-black");
 
 function restData(){
     store.workUndoButtonFn();
@@ -16,7 +19,7 @@ function restData(){
 </script>
 
 <template>
-    <span>Haqiqatdan ham uchirishni hohlaysizmi? {{ store.count }}...</span> <Button @click="restData" class="text-black" variant="outline">Qaytish</Button>
+    <span>Haqiqatdan ham uchirishni hohlaysizmi? {{ store.count }}...</span> <Button @click="restData"  :class="textColor" variant="outline">Qaytish</Button>
 </template>
 
 

@@ -20,12 +20,12 @@ const props = defineProps<{
       <Transition name="modal-inner">
         <div 
           v-if="props.modalLogic"  
-          class="p-4 bg-white self-start mt-32 max-w-md rounded"
+          class="p-4  dark:bg-gray-800 transition-colors duration-300 dark:border-white dark:text-white bg-white self-start mt-32 max-w-md rounded"
         >
           <slot />
           <button 
             @click="$emit('close-modal', false)" 
-            class="mt-8 bg-weather-primary text-black py-2 px-6 rounded">
+            class="mt-8  dark:hover:bg-gray-500 hover:text-white bg-weather-primary  text-black py-2 px-6 rounded">
             Close
           </button>
         </div>

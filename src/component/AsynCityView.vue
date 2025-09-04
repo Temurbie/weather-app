@@ -42,9 +42,9 @@ onMounted(async () => {
 
 
 <template>
-  <div class="relative p-3 text-black">
+  <div class="relative p-3 w-full min-h-[calc(100vh-80px)] text-black">
     <div
-      class="absolute inset-0 bg-cover bg-center filter blur-sm"
+      class="absolute dark:bg-gray-800 shadow-lg inset-0 bg-cover bg-center filter blur-sm"
       :style="{ backgroundImage: `url(${imageUrl})` }"
     ></div>
     <div class="relative z-10">
@@ -53,7 +53,7 @@ onMounted(async () => {
       </p>
 
       <div class="mt-1 text-center flex justify-center flex-col text-2xl">
-        <div class="bg-white/35 text-black inline-block mx-auto p-5 rounded">
+        <div class="bg-white/35 dark:bg-gray-800 shadow-lg dark:text-white transition-colors duration-300 text-black inline-block mx-auto p-5 rounded">
           <p class="text-7xl">{{ weatherName }}</p>
           <img class="m-auto p-3 w-40 h-auto" :src="weatherIcon" alt="" />
           <p class="text-5xl">{{ temp }} °C</p>

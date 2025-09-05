@@ -48,8 +48,8 @@ function toggleTheme(){
     <nav class="container flex flex-col sm:flex-row items-center gap-4 py-6 text-black dark:text-white transition-colors duration-300">
       
       <div @click="toggleTheme" class="cursor-pointer text-black dark:text-white text-2xl transition-colors duration-300">
-        <i v-if="pickTheme.isDark" class="fa-solid fa-moon"></i>
-        <i v-else class="fa-solid fa-sun"></i>
+        <i v-if="pickTheme.isDark" class="fa-solid fa-sun"></i>
+        <i v-else class=" fa-solid fa-moon"></i>
       </div>
 
       <RouterLink :to="{ name: 'home' }" class="flex items-center gap-3 flex-1">

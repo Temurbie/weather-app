@@ -12,7 +12,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div
+   <div
     :class="
       cn(
         'rounded-lg dark:bg-gray-800 transition-colors duration-300 border text-card-foreground shadow-sm',

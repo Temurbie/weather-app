@@ -7,7 +7,10 @@ import { useCityImg } from "@/composables/getCityImg";
 
 import { weatherIcons } from "@/constants/weatherIcons";
 
-
+const loading =  ref(true);
+setTimeout(() => {
+  loading.value = false
+}, 2000);
 
 const { getWeather, route, mappedKey, date } = useAsyncWeather();
 const { imageUrl, getData } = useCityImg();
@@ -42,7 +45,8 @@ onMounted(async () => {
 
 
 <template>
-  <div class="relative p-3 w-full min-h-[calc(100vh-80px)] text-black">
+ <v-skeleton-loader type="card-avatar" :loading="loading">
+     <div class="relative p-3 w-full min-h-[calc(100vh-80px)] text-black">
     <div
       class="absolute dark:bg-gray-800 shadow-lg inset-0 bg-cover bg-center filter blur-sm"
       :style="{ backgroundImage: `url(${imageUrl})` }"
@@ -69,6 +73,7 @@ onMounted(async () => {
       </div>
     </div>
   </div>
+ </v-skeleton-loader>
 </template>
 
 

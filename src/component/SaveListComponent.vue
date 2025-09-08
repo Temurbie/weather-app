@@ -41,12 +41,12 @@ function deleteCard() {
 <template>
   <div>
       <Card
-        class="group bg-card text-card-foreground hover:bg-muted-foreground hover:scale-110 p-7 rounded-lg text-center"
+        class=" relative group bg-card text-card-foreground hover:bg-muted-foreground hover:scale-110 p-7 rounded-lg text-center"
       >
         <div
           class="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
         >
-          <Button variant="destructive" @click="deleteCard">Delete</Button>
+          <Button class="bg-black" variant="destructive" @click="deleteCard">Delete</Button>
         </div>
 
         <h1>{{ sityName }}</h1>

@@ -2,14 +2,15 @@
 import { useRouteInfo } from "../storie/useRoutInfo";
 import ControlButtons from "./ControlButtons.vue";
 import SaveListComponent from "./SaveListComponent.vue";
-import doSwal from "@/services/doSwal";
+import useSwal from "@/composables/useSwal";
 import SnackBar from "./SnackBar.vue";
 
 const store = useRouteInfo();
 
+const doSwal = useSwal()
 function handleClick(id: number) {
   store.deleteCardInStorage(id);
-  doSwal("Shaxar Olib tashlandi");
+  doSwal.doSwal("Shaxar Olib tashlandi")
  
 }
 

@@ -21,11 +21,13 @@ export function useSearchLocation() {
       queryTimeout.value = setTimeout(async () => {
         try {
           clearTimeout(queryTimeout.value);
-
-          const result = await MapBoxSearchCity.getCites(
+          const apiRes =  await MapBoxSearchCity.getCites(
             searchQuery.value,
             mapboxAPIKey
           );
+          const result = apiRes.data.features || []
+          console.log(result);
+          
 
           mapBoxSearchResult.value = Array.isArray(result) ? result : [];
           haveError.value = false;

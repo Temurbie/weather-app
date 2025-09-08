@@ -2,7 +2,7 @@
 
 import { ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
-import doSwal from '@/services/doSwal'
+import useSwal from '@/composables/useSwal'
 
 import { useRouteInfo } from '@/storie/useRoutInfo'
 import { useTheme } from "../storie/useTheme"
@@ -13,6 +13,7 @@ const modalLogic = ref(false)
 const routeInfo = useRouteInfo()
 const route = useRoute()
 const pickTheme = useTheme();
+const doSwal = useSwal()
 
 
 
@@ -22,7 +23,7 @@ watch(
   
   (yangiQiymat) => {
     if (yangiQiymat) {
-      doSwal("Shaxar Qushildi");
+      doSwal.doSwal("shaxar qushildi")
       routeInfo.restAlert();
     }
   }

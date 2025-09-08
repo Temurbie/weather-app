@@ -1,7 +1,7 @@
 import swal from "sweetalert";
 
-export default 
-function doSwal(qiymat : string) {
+export default function  useSwal(){
+  function doSwal(qiymat : string) {
   return swal({
     text : qiymat,
     timer: 1100,
@@ -9,4 +9,6 @@ function doSwal(qiymat : string) {
     buttons: false as any,
 
   })
+}
+return {doSwal}
 }
